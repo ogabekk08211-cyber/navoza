@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NAVOZA — Onlayn Kutubxona</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f6f3ee;
+            color: #1d2521;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        nav {
+            max-width: 1250px;
+            margin: auto;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            font-weight: 800;
+            color: #163c31;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #c99545;
+        }
+
+        .menu {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: #27332e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #b77c2f;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 11px 19px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .login {
+            border: 1px solid #d9d3ca;
+            color: #26322d;
+        }
+
+        .login:hover {
+            background: #eeeae3;
+        }
+
+        .register {
+            background: #173f33;
+            color: white;
+        }
+
+        .register:hover {
+            transform: translateY(-2px);
+            background: #0f3026;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(12,35,29,0.78), rgba(12,35,29,0.72)),
+                url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=85");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1250px;
+            width: 100%;
+            margin: auto;
+            padding: 70px 25px;
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 15px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(45px, 6vw, 78px);
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #e5b96b;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #e8eee9;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background: #d39b4c;
+            color: #17251f;
+            padding: 15px 25px;
+            border-radius: 13px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            background: #e4b86e;
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.10);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 13px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+        }
+
+        /* SEARCH */
+
+        .search-section {
+            max-width: 1100px;
+            margin: -45px auto 0;
+            position: relative;
+            z-index: 5;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            background: rgba(255,255,255,0.95);
+            padding: 18px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.13);
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-box input,
+        .search-box select {
+            border: 1px solid #e1ddd6;
+            background: #faf9f7;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        .search-btn {
+            border: none;
+            background: #173f33;
+            color: white;
+            padding: 0 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 25px;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #193c31;
+        }
+
+        .section-title p {
+            color: #6d746f;
+        }
+
+        /* CATEGORIES */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .category {
+            padding: 28px;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e8e3dc;
+            text-decoration: none;
+            color: #1d2e27;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .category h3 {
+            margin-bottom: 6px;
+        }
+
+        .category p {
+            color: #7b817d;
+            font-size: 14px;
+        }
+
+        /* BOOKS */
+
+        .books {
+            background: #eeebe5;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .book {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e2ddd5;
+            transition: 0.3s;
+        }
+
+        .book:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .book-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .book:hover img {
+            transform: scale(1.05);
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-tag {
+            color: #b77c2f;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .book h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 21px;
+            margin: 7px 0;
+        }
+
+        .author {
+            color: #747b77;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .read-btn {
+            width: 100%;
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: #173f33;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #e4dfd7;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto auto 20px;
+            border-radius: 18px;
+            background: #edf3ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #737a76;
+            line-height: 1.6;
+        }
+
+        /* PREMIUM */
+
+        .premium {
+            background:
+                linear-gradient(110deg, rgba(17,52,42,0.96), rgba(22,62,50,0.90)),
+                url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1800&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .premium-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .premium h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .premium p {
+            color: #dbe7e0;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .premium-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .premium-list span {
+            padding: 10px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 480px;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 45px;
+            color: #173f33;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: #686f6b;
+            margin-bottom: 20px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: #e8e4dc;
+        }
+
+        .contact-box {
+            background: white;
+            border-radius: 25px;
+            padding: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .contact-box h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            color: #173f33;
+            margin-bottom: 10px;
+        }
+
+        .phone {
+            font-size: 25px;
+            font-weight: 800;
+            color: #b77c2f;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #112c24;
+            color: white;
+            padding: 50px 25px 25px;
+        }
+
+        .footer-content {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #b9c8c1;
+            line-height: 1.8;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+            color: #93a59c;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+            .menu {
+                display: none;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .book-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                height: 68px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .nav-buttons .login {
+                display: none;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 15px;
+            }
+
+            .categories,
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 34px;
+            }
+
+            .premium h2 {
+                font-size: 36px;
+            }
+
+            .contact-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav>
+        <a href="#" class="logo">
+            NAVO<span>ZA</span>
+        </a>
+
+        <ul class="menu">
+            <li><a href="#home">Bosh sahifa</a></li>
+            <li><a href="#categories">Janrlar</a></li>
+            <li><a href="#books">Kitoblar</a></li>
+            <li><a href="#about">Biz haqimizda</a></li>
+            <li><a href="#contact">Aloqa</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="#" class="btn login">Kirish</a>
+            <a href="#" class="btn register">Ro‘yxatdan o‘tish</a>
+        </div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="badge">📚 Zamonaviy raqamli kutubxona</span>
+
+        <h1>
+            Kitoblar olamiga
+            <span>xush kelibsiz.</span>
+        </h1>
+
+        <p>
+            NAVOZA — kitob o‘qish, tinglash va yangi bilimlarni
+            kashf qilish uchun yaratilgan zamonaviy onlayn kutubxona.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#books" class="primary-btn">
+                📖 Kitoblarni ko‘rish
+            </a>
+
+            <a href="#categories" class="secondary-btn">
+                Janrlarni ko‘rish →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section">
+    <div class="search-box">
+        <input type="text" placeholder="Kitob yoki muallif nomini qidiring...">
+        <select>
+            <option>Barcha janrlar</option>
+            <option>Roman</option>
+            <option>She’riyat</option>
+            <option>Doston</option>
+            <option>Hikoya</option>
+            <option>Diniy adabiyot</option>
+            <option>Hadis</option>
+        </select>
+        <button class="search-btn">
+            🔍 Qidirish
+        </button>
+    </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+    <div class="container">
+        <div class="section-title">
+            <h2>Janrlar</h2>
+            <p>O‘zingizga yoqqan adabiyot turini tanlang</p>
+        </div>
+
+        <div class="categories">
+            <a href="#" class="category">
+                <div class="category-icon">📕</div>
+                <h3>Roman</h3>
+                <p>Qiziqarli romanlar</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">✍️</div>
+                <h3>She’riyat</h3>
+                <p>She’rlar va to‘plamlar</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">🏹</div>
+                <h3>Doston</h3>
+                <p>Mumtoz va xalq dostonlari</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">📗</div>
+                <h3>Hikoya</h3>
+                <p>Qisqa va qiziqarli hikoyalar</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">📘</div>
+                <h3>Nasr</h3>
+                <p>Nasriy asarlar</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">☪️</div>
+                <h3>Diniy</h3>
+                <p>Diniy adabiyotlar</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">📜</div>
+                <h3>Hadis</h3>
+                <p>Hadis to‘plamlari</p>
+            </a>
+
+            <a href="#" class="category">
+                <div class="category-icon">🦊</div>
+                <h3>Masal</h3>
+                <p>Bolalar uchun masallar</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books" id="books">
+    <div class="container">
+        <div class="section-title">
+            <h2>Mashhur kitoblar</h2>
+            <p>Bugun o‘qish uchun tavsiya qilamiz</p>
+        </div>
+
+        <div class="book-grid">
+            <div class="book">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=700&q=80" alt="Kitob 1">
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">Roman</span>
+                    <h3>Adabiyot olami</h3>
+                    <p class="author">NAVOZA kolleksiyasi</p>
+                    <a href="#" class="read-btn">O‘qishni boshlash</a>
+                </div>
+            </div>
+
+            <div class="book">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80" alt="Kitob 2">
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">She’riyat</span>
+                    <h3>So‘z va Navo</h3>
+                    <p class="author">She’rlar to‘plami</p>
+                    <a href="#" class="read-btn">O‘qishni boshlash</a>
+                </div>
+            </div>
+
+            <div class="book">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=700&q=80" alt="Kitob 3">
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">Doston</span>
+                    <h3>Qadimiy hikoyalar</h3>
+                    <p class="author">Mumtoz adabiyot</p>
+                    <a href="#" class="read-btn">O‘qishni boshlash</a>
+                </div>
+            </div>
+
+            <div class="book">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=700&q=80" alt="Kitob 4">
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">Nasr</span>
+                    <h3>Mutolaa zavqi</h3>
+                    <p class="author">Zamonaviy adabiyot</p>
+                    <a href="#" class="read-btn">O‘qishni boshlash</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>NAVOZA imkoniyatlari</h2>
+            <p>Kitob o‘qishni yanada qulay qiling</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎧</div>
+                <h3>Audio kitoblar</h3>
+                <p>Kitoblarni tinglang va istalgan joyda mutolaa qilish imkoniyatidan foydalaning.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎬</div>
+                <h3>Video darslar</h3>
+                <p>Adabiyot va ta’limga oid foydali videolarni tomosha qiling.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>QR kod</h3>
+                <p>Kitoblarning QR kodini skanerlab, ularni tez va qulay toping.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PREMIUM -->
+<section class="premium">
+    <div class="premium-content">
+        <h2>NAVOZA Premium</h2>
+        <p>Premium a’zolik orqali yanada ko‘proq kitoblar, audio materiallar va maxsus kontentlardan foydalaning.</p>
+
+        <div class="premium-list">
+            <span>✓ Cheksiz o‘qish</span>
+            <span>✓ Audio kitoblar</span>
+            <span>✓ Premium kolleksiya</span>
+            <span>✓ Reklamasiz foydalanish</span>
+        </div>
+
+        <a href="#" class="primary-btn">
+            Premiumni faollashtirish
+        </a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="about">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1000&q=85" alt="Biz haqimizda">
+            </div>
+
+            <div class="about-text">
+                <h2>NAVOZA haqida</h2>
+                <p>NAVOZA — kitobxonlar uchun yaratilgan zamonaviy onlayn kutubxona platformasi.</p>
+                <p>Bizning maqsadimiz — bilim va adabiyotni zamonaviy texnologiyalar yordamida har bir kitobxonga yanada yaqinlashtirish.</p>
+                <p>Bu yerda turli janrdagi kitoblarni topish, o‘qish, tinglash va yangi bilimlarni kashf qilish mumkin.</p>
+
+                <a href="#books" class="primary-btn">
+                    Kutubxonani ko‘rish
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-box">
+            <div>
+                <h2>Kitob buyurtma qilmoqchimisiz?</h2>
+                <p>Kerakli kitobni topa olmasangiz, biz bilan bog‘laning.</p>
+            </div>
+            <a href="tel:776645232" class="primary-btn">
+                📞 776 645 232
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3 class="logo" style="color:white;">
+                NAVO<span>ZA</span>
+            </h3>
+            <p>
+                So‘zlar yashaydigan olam.<br>
+                Zamonaviy onlayn kutubxona.
+            </p>
+        </div>
+
+        <div>
+            <h3>Bo‘limlar</h3>
+            <p><a href="#home">Bosh sahifa</a></p>
+            <p><a href="#categories">Janrlar</a></p>
+            <p><a href="#books">Kitoblar</a></p>
+            <p><a href="#about">Biz haqimizda</a></p>
+        </div>
+
+        <div>
+            <h3>Aloqa</h3>
+            <p>📞 776 645 232</p>
+            <p>📚 NAVOZA Online Library</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 NAVOZA — Onlayn Kutubxona. Barcha huquqlar himoyalangan.
+    </div>
+</footer>
+
+</body>
+</html>
